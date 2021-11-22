@@ -3,6 +3,7 @@
 
 #include "CppUnitTest.h"
 #include "Talk.h"
+#include "Session.h"
 #include "AdditionalTypes.h"
 
 
@@ -68,6 +69,34 @@ namespace UnitTests
 			std::stringstream buffer;
 
 			buffer << talk;
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
+
+		TEST_METHOD(InitAndOutputSession)
+		{
+			Session session = Session{ TimeOfDay(9, 0, Period::AM), 180 };
+
+			std::string inputString = "Writing Fast Tests Against Enterprise Rails 60min";
+			Talk talk1 = Talk{ inputString };
+			session.AddTalk(&talk1);
+
+			inputString = "Overdoing it in Python 45min";
+			Talk talk2 = Talk{ inputString };
+			session.AddTalk(&talk2);
+
+			inputString = " Lua for the Masses 30min";
+			Talk talk3 = Talk{ inputString };
+			session.AddTalk(&talk3);
+
+			std::string expected = "09:00AM Writing Fast Tests Against Enterprise Rails 60min\n"
+								   "10:00AM Overdoing it in Python 45min\n"
+								   "10:45AM Lua for the Masses 30min\n";
+
+			std::stringstream buffer;
+
+			buffer << session;
 
 			// Test
 			Assert::AreEqual(expected, buffer.str());
