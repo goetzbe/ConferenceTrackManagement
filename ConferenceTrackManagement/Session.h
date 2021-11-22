@@ -10,6 +10,7 @@ public:
 	int GetFreeMinutes() { return freeMinutes_; }
 	void AddTalk(Talk* talk);
 
+	// Output all talks in session in a seperate line
 	friend std::ostream& operator<<(std::ostream& os, const Session& session);
 private:
 	TimeOfDay startingTime_;
