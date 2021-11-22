@@ -9,6 +9,8 @@ public:
 
 	std::string GetName() const { return name_; }
 	int GetDuration() const { return duration_; }
+	TimeOfDay& GetStartingTime() { return startingTime_; }
+	TimeOfDay GetEndingTime() { return startingTime_.AddMinutes(duration_); }
 	void SetStartingTime(TimeOfDay time);
 
 	friend std::ostream& operator<<(std::ostream& os, const Talk& talk);

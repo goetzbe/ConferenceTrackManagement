@@ -140,11 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AdditionalTypes.h" />
+    <ClInclude Include="Session.h" />
     <ClInclude Include="Talk.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdditionalTypes.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Session.cpp" />
     <ClCompile Include="Talk.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

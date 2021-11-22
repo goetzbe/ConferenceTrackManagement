@@ -31,7 +31,7 @@ TimeOfDay TimeOfDay::AddMinutes(int minutes)
 			time.period_ = time.period_ == Period::AM ? Period::PM : Period::AM;
 		}
 		time.hours_ += hoursToAdd;
-		time.hours_ = time.hours_ > 12 ? time.hours_ % 12 : 12;
+		time.hours_ = time.hours_ > 12 ? time.hours_ % 12 : time.hours_;
 	}
 	return time;
 }

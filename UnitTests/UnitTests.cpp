@@ -86,7 +86,7 @@ namespace UnitTests
 			Talk talk2 = Talk{ inputString };
 			session.AddTalk(&talk2);
 
-			inputString = " Lua for the Masses 30min";
+			inputString = "Lua for the Masses 30min";
 			Talk talk3 = Talk{ inputString };
 			session.AddTalk(&talk3);
 
