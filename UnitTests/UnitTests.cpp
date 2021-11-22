@@ -57,4 +57,45 @@ namespace UnitTests
 			Assert::AreEqual(expected, buffer.str());
 		}
 	};
+
+	TEST_CLASS(OperationTests)
+	{
+	public:
+		TEST_METHOD(AddMinutesToTime)
+		{
+			std::string expected = "10:45AM";
+
+			TimeOfDay time = TimeOfDay(10, 15, Period::AM);
+			time.AddMinutes(30);
+
+			std::stringstream buffer;
+			buffer << time;
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
+
+		TEST_METHOD(AddMinutesToTimeChangeOfPeriod)
+		{
+			std::string expected = "12:15PM";
+
+			TimeOfDay time = TimeOfDay(11, 45, Period::AM);
+			time.AddMinutes(30);
+
+			std::stringstream buffer;
+			buffer << time;
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+
+			// Go from 12 to 01 PM
+			time.AddMinutes(60);
+			expected = "01:15PM";
+
+			buffer.str("");
+			buffer << time;
+
+			Assert::AreEqual(expected, buffer.str());
+		}
+	};
 }
