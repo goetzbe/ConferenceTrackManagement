@@ -16,16 +16,16 @@ namespace UnitTests
 		TEST_METHOD(InitalizeTalkWithMinutes)
 		{
 			std::string inputString = "Writing Fast Tests Against Enterprise Rails 60min";
-			Talk task = Talk{inputString};
-			Assert::AreEqual(std::string("Writing Fast Tests Against Enterprise Rails"), task.GetName());
-			Assert::AreEqual(60, task.GetDuration());
+			Talk talk = Talk{inputString};
+			Assert::AreEqual(std::string(inputString), talk.GetName());
+			Assert::AreEqual(60, talk.GetDuration());
 		}
 		TEST_METHOD(InitalizeLightningTalk)
 		{
 			std::string inputString = "Rails for Python Developers lightning";
-			Talk task = Talk{inputString};
-			Assert::AreEqual(std::string("Rails for Python Developers"), task.GetName());
-			Assert::AreEqual(5, task.GetDuration());
+			Talk talk = Talk{inputString};
+			Assert::AreEqual(std::string(inputString), talk.GetName());
+			Assert::AreEqual(5, talk.GetDuration());
 		}
 	};
 
@@ -56,6 +56,22 @@ namespace UnitTests
 			// Test
 			Assert::AreEqual(expected, buffer.str());
 		}
+
+		TEST_METHOD(OutputTalk)
+		{
+			std::string inputString = "Writing Fast Tests Against Enterprise Rails 60min";
+			Talk talk = Talk{ inputString };
+			talk.SetStartingTime(TimeOfDay(10, 15, Period::AM));
+
+			std::string expected = "10:15AM Writing Fast Tests Against Enterprise Rails 60min\n";
+
+			std::stringstream buffer;
+
+			buffer << talk;
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
 	};
 
 	TEST_CLASS(OperationTests)
@@ -66,7 +82,7 @@ namespace UnitTests
 			std::string expected = "10:45AM";
 
 			TimeOfDay time = TimeOfDay(10, 15, Period::AM);
-			time.AddMinutes(30);
+			time = time.AddMinutes(30);
 
 			std::stringstream buffer;
 			buffer << time;
@@ -80,7 +96,7 @@ namespace UnitTests
 			std::string expected = "12:15PM";
 
 			TimeOfDay time = TimeOfDay(11, 45, Period::AM);
-			time.AddMinutes(30);
+			time = time.AddMinutes(30);
 
 			std::stringstream buffer;
 			buffer << time;
@@ -89,7 +105,7 @@ namespace UnitTests
 			Assert::AreEqual(expected, buffer.str());
 
 			// Go from 12 to 01 PM
-			time.AddMinutes(60);
+			time = time.AddMinutes(60);
 			expected = "01:15PM";
 
 			buffer.str("");

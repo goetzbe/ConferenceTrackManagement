@@ -16,21 +16,22 @@ std::ostream& operator<<(std::ostream& os, const TimeOfDay& time) {
 	return os;
 }
 
-void TimeOfDay::AddMinutes(int minutes)
+TimeOfDay TimeOfDay::AddMinutes(int minutes)
 {
-	minutes_ += minutes;
+	TimeOfDay time = TimeOfDay(hours_, minutes_, period_);
+	time.minutes_ += minutes;
 
-	if (minutes_ >= 60)
+	if (time.minutes_ >= 60)
 	{
-		int hoursToAdd = minutes_ / 60;
-		minutes_ = minutes_ % 60;
+		int hoursToAdd = time.minutes_ / 60;
+		time.minutes_ = time.minutes_ % 60;
 
-		if (hours_ < 12 && hours_ + hoursToAdd >= 12)
+		if (time.hours_ < 12 && time.hours_ + hoursToAdd >= 12)
 		{
-			period_ = period_ == Period::AM ? Period::PM : Period::AM;
+			time.period_ = time.period_ == Period::AM ? Period::PM : Period::AM;
 		}
-		hours_ += hoursToAdd;
-		hours_ = hours_ > 12 ? hours_ % 12 : 12;
+		time.hours_ += hoursToAdd;
+		time.hours_ = time.hours_ > 12 ? time.hours_ % 12 : 12;
 	}
-
+	return time;
 }
