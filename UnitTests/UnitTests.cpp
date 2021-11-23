@@ -130,10 +130,10 @@ namespace UnitTests
 			Talk talk3 = Talk{ inputString };
 			session1.AddTalk(&talk3);
 
-			Session session2 = track.GetAfternoonSession();
+			Session& session2 = track.GetAfternoonSession();
 
 			// Adding three talks to the session
-			std::string inputString = "Ruby Errors from Mismatched Gem Versions 45min";
+			inputString = "Ruby Errors from Mismatched Gem Versions 45min";
 			Talk talk4 = Talk{ inputString };
 			session2.AddTalk(&talk4);
 
@@ -150,13 +150,13 @@ namespace UnitTests
 				"09:00AM Writing Fast Tests Against Enterprise Rails 60min\n"
 				"10:00AM Overdoing it in Python 45min\n"
 				"10:45AM Lua for the Masses 30min\n"
-				"12:00PM Lunch"
-				"01:00PM Ruby Errors from Mismatched Gem Versions 45min"
-				"01:45PM Common Ruby Errors 45min"
-				"02:30PM Rails for Python Developers lightning"
-				"04:00PM Networking Event";
+				"12:00PM Lunch\n"
+				"01:00PM Ruby Errors from Mismatched Gem Versions 45min\n"
+				"01:45PM Common Ruby Errors 45min\n"
+				"02:30PM Rails for Python Developers lightning\n"
+				"04:00PM Networking Event\n";
 
-			// Output session
+			// Output track
 			std::stringstream buffer;
 			buffer << track;
 

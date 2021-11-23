@@ -16,7 +16,9 @@ public:
 	TimeOfDay() : hours_(0), minutes_(0), period_(Period::AM) {};
 	TimeOfDay(int hours, int minutes, Period period) : hours_(hours), minutes_(minutes), period_(period) {};
 
-	TimeOfDay AddMinutes(int minutes); // Add given minutes and return new TimeOfDay
+	int GetHours() const { return hours_; }
+
+	TimeOfDay AddMinutes(int minutes) const; // Add given minutes and return new TimeOfDay
 	// TODO: Calculate difference in minutes between two times
 
 	// Output time in four digit format with period suffix: XX:XXAM

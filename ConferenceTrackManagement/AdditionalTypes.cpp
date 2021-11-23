@@ -17,7 +17,7 @@ std::ostream& operator<<(std::ostream& os, const TimeOfDay& time) {
 	return os;
 }
 
-TimeOfDay TimeOfDay::AddMinutes(int minutes)
+TimeOfDay TimeOfDay::AddMinutes(int minutes) const
 {
 	TimeOfDay time = TimeOfDay(hours_, minutes_, period_); // Create new time
 	time.minutes_ += minutes; // Add minutes

@@ -7,7 +7,9 @@ class Session {
 public:
 	Session(TimeOfDay startingTime, int durationInMinutes);
 
-	int GetFreeMinutes() { return freeMinutes_; }
+	int GetFreeMinutes() const { return freeMinutes_; }
+	TimeOfDay GetEndingTime() const { return talks_.back()->GetEndingTime(); }
+
 	void AddTalk(Talk* talk);
 
 	// Output all talks in session in a seperate line
