@@ -223,25 +223,25 @@ namespace UnitTests
 			conference.ReadInputFile(std::ifstream("..\\..\\talks.txt"), buffer);
 
 			std::string expected =
-				"00:00AM Writing Fast Tests Against Enterprise Rails 60min\n"
-				"00:00AM Overdoing it in Python 45min\n"
-				"00:00AM Lua for the Masses 30min\n"
-				"00:00AM Ruby Errors from Mismatched Gem Versions 45min\n"
-				"00:00AM Common Ruby Errors 45min\n"
-				"00:00AM Rails for Python Developers lightning\n"
-				"00:00AM Communicating Over Distance 60min\n"
-				"00:00AM Accounting-Driven Development 45min\n"
-				"00:00AM Woah 30min\n"
-				"00:00AM Sit Down and Write 30min\n"
-				"00:00AM Pair Programming vs Noise 45min\n"
-				"00:00AM Rails Magic 60min\n"
-				"00:00AM Ruby on Rails: Why We Should Move On 60min\n"
-				"00:00AM Clojure Ate Scala (on my project) 45min\n"
-				"00:00AM Programming in the Boondocks of Seattle 30min\n"
-				"00:00AM Ruby vs. Clojure for Back-End Development 30min\n"
-				"00:00AM Ruby on Rails Legacy App Maintenance 60min\n"
-				"00:00AM A World Without HackerNews 30min\n"
-				"00:00AM User Interface CSS in Rails Apps 30min\n\n";
+				"Writing Fast Tests Against Enterprise Rails 60min\n"
+				"Overdoing it in Python 45min\n"
+				"Lua for the Masses 30min\n"
+				"Ruby Errors from Mismatched Gem Versions 45min\n"
+				"Common Ruby Errors 45min\n"
+				"Rails for Python Developers lightning\n"
+				"Communicating Over Distance 60min\n"
+				"Accounting-Driven Development 45min\n"
+				"Woah 30min\n"
+				"Sit Down and Write 30min\n"
+				"Pair Programming vs Noise 45min\n"
+				"Rails Magic 60min\n"
+				"Ruby on Rails: Why We Should Move On 60min\n"
+				"Clojure Ate Scala (on my project) 45min\n"
+				"Programming in the Boondocks of Seattle 30min\n"
+				"Ruby vs. Clojure for Back-End Development 30min\n"
+				"Ruby on Rails Legacy App Maintenance 60min\n"
+				"A World Without HackerNews 30min\n"
+				"User Interface CSS in Rails Apps 30min\n\n";
 
 			// Test
 			Assert::AreEqual(expected, buffer.str());
