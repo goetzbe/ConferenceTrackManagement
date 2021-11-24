@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AdditionalTypes.h" />
+    <ClInclude Include="ConferenceManger.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="Talk.h" />
     <ClInclude Include="Track.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdditionalTypes.cpp" />
+    <ClCompile Include="ConferenceManger.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="Talk.cpp" />

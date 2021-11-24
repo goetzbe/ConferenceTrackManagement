@@ -220,6 +220,7 @@ namespace UnitTests
 			std::stringstream buffer;
 
 			ConferenceManager conference;
+			// Read input file and write results into buffer
 			conference.ReadInputFile(std::ifstream("..\\..\\talks.txt"), buffer);
 
 			std::string expected =
