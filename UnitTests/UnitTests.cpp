@@ -1,11 +1,14 @@
-#include <iostream>
 #include "pch.h"
 #include "CppUnitTest.h"
+
+#include <iostream>
+#include <fstream>
 
 #include "AdditionalTypes.h"
 #include "Talk.h"
 #include "Session.h"
 #include "Track.h"
+#include "ConferenceManger.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -24,6 +27,7 @@ namespace UnitTests
 			Assert::AreEqual(std::string(inputString), talk.GetName());
 			Assert::AreEqual(60, talk.GetDuration());
 		}
+
 		TEST_METHOD(InitalizeLightningTalk)
 		{
 			std::string inputString = "Rails for Python Developers lightning";
@@ -51,6 +55,7 @@ namespace UnitTests
 			// Test
 			Assert::AreEqual(expected, buffer.str());
 		}
+
 		TEST_METHOD(OutputTimeOfDayWithLeadingZerosPM)
 		{
 			TimeOfDay time = TimeOfDay{ 3, 5, Period::PM };
@@ -163,7 +168,6 @@ namespace UnitTests
 			// Test
 			Assert::AreEqual(expected, buffer.str());
 		}
-
 	};
 
 	TEST_CLASS(OperationTests)
@@ -206,6 +210,38 @@ namespace UnitTests
 			// Output time
 			buffer.str("");
 			buffer << time;
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
+
+		TEST_METHOD(ReadInputFileOfTalks)
+		{
+			std::stringstream buffer;
+
+			ConferenceManager conference;
+			conference.ReadInputFile(std::ifstream("..\\..\\talks.txt"), buffer);
+
+			std::string expected =
+				"00:00AM Writing Fast Tests Against Enterprise Rails 60min\n"
+				"00:00AM Overdoing it in Python 45min\n"
+				"00:00AM Lua for the Masses 30min\n"
+				"00:00AM Ruby Errors from Mismatched Gem Versions 45min\n"
+				"00:00AM Common Ruby Errors 45min\n"
+				"00:00AM Rails for Python Developers lightning\n"
+				"00:00AM Communicating Over Distance 60min\n"
+				"00:00AM Accounting-Driven Development 45min\n"
+				"00:00AM Woah 30min\n"
+				"00:00AM Sit Down and Write 30min\n"
+				"00:00AM Pair Programming vs Noise 45min\n"
+				"00:00AM Rails Magic 60min\n"
+				"00:00AM Ruby on Rails: Why We Should Move On 60min\n"
+				"00:00AM Clojure Ate Scala (on my project) 45min\n"
+				"00:00AM Programming in the Boondocks of Seattle 30min\n"
+				"00:00AM Ruby vs. Clojure for Back-End Development 30min\n"
+				"00:00AM Ruby on Rails Legacy App Maintenance 60min\n"
+				"00:00AM A World Without HackerNews 30min\n"
+				"00:00AM User Interface CSS in Rails Apps 30min\n\n";
 
 			// Test
 			Assert::AreEqual(expected, buffer.str());
