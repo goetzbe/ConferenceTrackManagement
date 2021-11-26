@@ -120,7 +120,7 @@ namespace UnitTests
 		{
 			Track track = Track();
 
-			Session& session1 = track.GetMorningSession();
+			Session& session1 = *track.GetMorningSession();
 
 			// Adding three talks to the session
 			std::string inputString = "Writing Fast Tests Against Enterprise Rails 60min";
@@ -135,7 +135,7 @@ namespace UnitTests
 			Talk talk3 = Talk{ inputString };
 			session1.AddTalk(&talk3);
 
-			Session& session2 = track.GetAfternoonSession();
+			Session& session2 = *track.GetAfternoonSession();
 
 			// Adding three talks to the session
 			inputString = "Ruby Errors from Mismatched Gem Versions 45min";
@@ -243,6 +243,46 @@ namespace UnitTests
 				"Ruby on Rails Legacy App Maintenance 60min\n"
 				"A World Without HackerNews 30min\n"
 				"User Interface CSS in Rails Apps 30min\n\n";
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
+
+		TEST_METHOD(TestOutputOfSortedConference)
+		{
+			ConferenceManager conference{};
+			conference.ReadInputFile(std::ifstream("..\\..\\talks.txt"));
+			conference.SortTalksOnTracks();
+
+			std::stringstream buffer;
+			buffer << conference;
+
+			std::string expected =
+				"Track 1\n"
+				"09:00AM Ruby on Rails Legacy App Maintenance 60min\n"
+				"10:00AM Common Ruby Errors 45min\n"
+				"10:45AM Sit Down and Write 30min\n"
+				"11:15AM Programming in the Boondocks of Seattle 30min\n"
+				"12:00PM Lunch\n"
+				"01:00PM Writing Fast Tests Against Enterprise Rails 60min\n"
+				"02:00PM Ruby on Rails: Why We Should Move On 60min\n"
+				"03:00PM Accounting-Driven Development 45min\n"
+				"03:45PM Woah 30min\n"
+				"04:15PM Ruby vs. Clojure for Back-End Development 30min\n"
+				"04:45PM Networking Event\n\n"
+				"Track 2\n"
+				"09:00AM Overdoing it in Python 45min\n"
+				"09:45AM Ruby Errors from Mismatched Gem Versions 45min\n"
+				"10:30AM Clojure Ate Scala (on my project) 45min\n"
+				"11:15AM User Interface CSS in Rails Apps 30min\n"
+				"11:45AM Rails for Python Developers lightning\n"
+				"12:00PM Lunch\n"
+				"01:00PM Communicating Over Distance 60min\n"
+				"02:00PM Rails Magic 60min\n"
+				"03:00PM Pair Programming vs Noise 45min\n"
+				"03:45PM Lua for the Masses 30min\n"
+				"04:15PM A World Without HackerNews 30min\n"
+				"04:45PM Networking Event\n\n";
 
 			// Test
 			Assert::AreEqual(expected, buffer.str());
