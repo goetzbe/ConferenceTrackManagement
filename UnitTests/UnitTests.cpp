@@ -248,6 +248,24 @@ namespace UnitTests
 			Assert::AreEqual(expected, buffer.str());
 		}
 
+		TEST_METHOD(TestCompareTimeOfDay)
+		{
+			TimeOfDay time1(12, 15, Period::PM);
+			TimeOfDay time2(12, 15, Period::PM);
+			TimeOfDay time3(10, 15, Period::AM);
+			TimeOfDay time4(12, 5, Period::PM);
+			TimeOfDay time5(1, 15, Period::PM);
+
+			Assert::IsTrue(time1 == time2);
+			Assert::IsTrue(time3 < time5);
+			Assert::IsTrue(time3 <= time2);
+			Assert::IsTrue(time1 <= time2);
+			Assert::IsTrue(time3 != time2);
+			Assert::IsTrue(time5 > time1);
+			Assert::IsTrue(time2 >= time1);
+			Assert::IsTrue(time1 >= time4);
+		}
+
 		TEST_METHOD(TestOutputOfSortedConference)
 		{
 			ConferenceManager conference{};
