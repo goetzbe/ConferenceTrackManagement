@@ -16,10 +16,18 @@ public:
 	TimeOfDay() : hours_(0), minutes_(0), period_(Period::AM) {};
 	TimeOfDay(int hours, int minutes, Period period) : hours_(hours), minutes_(minutes), period_(period) {};
 
+	bool operator<(const TimeOfDay& rhs) const;
+	bool operator==(const TimeOfDay& rhs) const;
+	bool operator!=(const TimeOfDay& rhs) const;
+	bool operator<=(const TimeOfDay& rhs) const;
+	bool operator>(const TimeOfDay& rhs) const;
+	bool operator>=(const TimeOfDay& rhs) const;
+
 	int GetHours() const { return hours_; }
+	int GetMinutes() const { return minutes_; }
+	Period GetPeriod() const { return period_; }
 
 	TimeOfDay AddMinutes(int minutes) const; // Add given minutes and return new TimeOfDay
-	// TODO: Calculate difference in minutes between two times
 
 	// Output time in four digit format with period suffix: XX:XXAM
 	friend std::ostream& operator<<(std::ostream& os, const TimeOfDay& time); 

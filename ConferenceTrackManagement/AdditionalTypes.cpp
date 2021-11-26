@@ -17,6 +17,47 @@ std::ostream& operator<<(std::ostream& os, const TimeOfDay& time) {
 	return os;
 }
 
+bool TimeOfDay::operator<(const TimeOfDay& rhs) const
+{
+	if (period_ == rhs.GetPeriod())
+	{
+		return ((hours_%12 < rhs.GetHours()%12) || (hours_ == rhs.GetHours() && minutes_ < rhs.GetMinutes()));
+	}
+	if (period_ == Period::AM)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool TimeOfDay::operator==(const TimeOfDay& rhs) const
+{
+	return (period_ == rhs.GetPeriod() && hours_ == rhs.GetHours() && minutes_ == rhs.GetMinutes());
+}
+
+bool TimeOfDay::operator!=(const TimeOfDay& rhs) const
+{
+	return !(*this == rhs);
+}
+
+bool TimeOfDay::operator<=(const TimeOfDay& rhs) const
+{
+	return !(rhs < *this);
+}
+
+bool TimeOfDay::operator>(const TimeOfDay& rhs) const
+{
+	return rhs < *this;
+}
+
+bool TimeOfDay::operator>=(const TimeOfDay& rhs) const
+{
+	return !(*this < rhs);
+}
+
 TimeOfDay TimeOfDay::AddMinutes(int minutes) const
 {
 	TimeOfDay time = TimeOfDay(hours_, minutes_, period_); // Create new time
